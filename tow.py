@@ -70,18 +70,18 @@ def display_all_db_data():
 #     #    print(entry)
 
 
-# def display_out_of_state():
-#     conn = sqlite3.connect('towed-cars.db')
-#     cursor = conn.cursor()
+ def display_out_of_state():
+    conn = sqlite3.connect('towed-cars.db')
+    cursor = conn.cursor()
 
 
 
 
-#     #How many of the cars came from out of state?
+    #How many of the cars came from out of state?
 
 
 
-#     sql = "SELECT COUNT(state) FROM tow_table WHERE state != 'IL' AND state != '' "
+    sql = "SELECT COUNT(state) FROM tow_table WHERE state != 'IL' AND state != '' "
 
 #     #answer :        -------
 # #                     (406,)
@@ -89,21 +89,21 @@ def display_all_db_data():
 
 
 
-#     address_column = cursor.execute(sql)
+    address_column = cursor.execute(sql)
 
-#     all_addresses = address_column.fetchall()
-#     for address in all_addresses:
-#         print(address)
-
-
-# def display_states_in_order():
-#     conn = sqlite3.connect('towed-cars.db')
-#     cursor = conn.cursor()
-
-#     #Aside from Illinois, list all other states that the towed cars came from, in alphabetical order.
+    all_addresses = address_column.fetchall()
+    for address in all_addresses:
+        print(address)
 
 
-#     sql = "SELECT state FROM tow_table WHERE NOT state = 'IL' ORDER BY state "
+def display_states_in_order():
+    conn = sqlite3.connect('towed-cars.db')
+    cursor = conn.cursor()
+
+    #Aside from Illinois, list all other states that the towed cars came from, in alphabetical order.
+
+
+    sql = "SELECT state FROM tow_table WHERE NOT state = 'IL' ORDER BY state "
 
 
 #     #Answer:    (u'AL',)  (u'CT',)  (u'IN',)    (u'MN',)   (u'NJ',)   (u'PA',)   (u'WI',)
@@ -117,19 +117,19 @@ def display_all_db_data():
 
 
     
-#     address_column = cursor.execute(sql)
-#     all_addresses = address_column.fetchall()
-#     for address in all_addresses:
-#         print(address)
+    address_column = cursor.execute(sql)
+    all_addresses = address_column.fetchall()
+    for address in all_addresses:
+        print(address)
 
 
-# def display_towing_in_chicago():
-#     conn = sqlite3.connect('towed-cars.db')
-#     cursor = conn.cursor()
+def display_towing_in_chicago():
+    conn = sqlite3.connect('towed-cars.db')
+    cursor = conn.cursor()
 
-#     #How many towing facility locations are there in the City of Chicago, according to this dataset? NUmber of difference adresses in IL
+    #How many towing facility locations are there in the City of Chicago, according to this dataset? NUmber of difference adresses in IL
    
-#     sql = "SELECT COUNT (DISTINCT address) FROM (SELECT street_num, street_dir, street_name AS address FROM tow_table WHERE state = 'IL' )"
+    sql = "SELECT COUNT (DISTINCT address) FROM (SELECT street_num, street_dir, street_name AS address FROM tow_table WHERE state = 'IL' )"
 
 
 # #   Answer:  ((4,), ' Different Towing places in Chicago')
@@ -139,84 +139,84 @@ def display_all_db_data():
 
 
     
-#     address_column = cursor.execute(sql)
-#     all_addresses = address_column.fetchall()
-#     for address in all_addresses:
-#         print(address, " Different Towing places in Chicago")
+    address_column = cursor.execute(sql)
+    all_addresses = address_column.fetchall()
+    for address in all_addresses:
+        print(address, " Different Towing places in Chicago")
 
 
 
 
-# def display_most_towed_day():
-#     conn = sqlite3.connect('towed-cars.db')
-#     cursor = conn.cursor()
+def display_most_towed_day():
+    conn = sqlite3.connect('towed-cars.db')
+    cursor = conn.cursor()
 
-#     #On what date were the most cars towed? What day of the week was this? (Look up the day in a calendar)
+    #On what date were the most cars towed? What day of the week was this? (Look up the day in a calendar)
 
-#     sql = " SELECT MAX(number_of_rows), month,day, year FROM (SELECT month,day,year,COUNT(*)  AS number_of_rows FROM tow_table GROUP BY  month,day,year)"
-
-
-#     # Answer: ((132, 4, 12, 2019), 'Friday')
+    sql = " SELECT MAX(number_of_rows), month,day, year FROM (SELECT month,day,year,COUNT(*)  AS number_of_rows FROM tow_table GROUP BY  month,day,year)"
 
 
-
-
-#     address_column = cursor.execute(sql)
-#     all_addresses = address_column.fetchall()
-#     for address in all_addresses:
-#         print(address, "Friday")
+    # Answer: ((132, 4, 12, 2019), 'Friday')
 
 
 
 
-# def display_most_towed_manufacturer():
-#     conn = sqlite3.connect('towed-cars.db')
-#     cursor = conn.cursor()
-
-
-#     #What vehicle make (i.e. car manufacturer) is the most towed?    
-
-
-
-#     sql = " SELECT MAX(number_of_tows), make FROM (SELECT make,COUNT(*)  AS number_of_tows FROM tow_table GROUP BY  make)"
-
-
-
-#      #  Answer:   (796, u'CHEV')
+    address_column = cursor.execute(sql)
+    all_addresses = address_column.fetchall()
+    for address in all_addresses:
+        print(address, "Friday")
 
 
 
 
-#     columns = cursor.execute(sql)
-#     all_entries = columns.fetchall()
-#     for entry in all_entries:
-#         print(entry)
+def display_most_towed_manufacturer():
+    conn = sqlite3.connect('towed-cars.db')
+    cursor = conn.cursor()
+
+
+    #What vehicle make (i.e. car manufacturer) is the most towed?    
+
+
+
+    sql = " SELECT MAX(number_of_tows), make FROM (SELECT make,COUNT(*)  AS number_of_tows FROM tow_table GROUP BY  make)"
+
+
+
+     #  Answer:   (796, u'CHEV')
 
 
 
 
-# def work_test():
-#     conn = sqlite3.connect('towed-cars.db')
-#     cursor = conn.cursor()
-
-
-#     #What vehicle make (i.e. car manufacturer) is the most towed?    
-
-
-
-#     sql = " SELECT month , make FROM tow_table "
-
-
-
-#      #  Answer:   (796, u'CHEV')
+    columns = cursor.execute(sql)
+    all_entries = columns.fetchall()
+    for entry in all_entries:
+        print(entry)
 
 
 
 
-#     columns = cursor.execute(sql)
-#     all_entries = columns.fetchall()
-#     for entry in all_entries:
-#         print(entry)
+def work_test():
+    conn = sqlite3.connect('towed-cars.db')
+    cursor = conn.cursor()
+
+
+    #What vehicle make (i.e. car manufacturer) is the most towed?    
+
+
+
+    sql = " SELECT month , make FROM tow_table "
+
+
+
+     #  Answer:   (796, u'CHEV')
+
+
+
+
+    columns = cursor.execute(sql)
+    all_entries = columns.fetchall()
+    for entry in all_entries:
+        print(entry)
 
 
 
